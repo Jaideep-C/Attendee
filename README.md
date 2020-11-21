@@ -1,16 +1,16 @@
-# attandee
+# Attandee
 
-A new Flutter project.
+Attandee is an app, built with flutter, thus compatible on many platforms.
 
-## Getting Started
+The main goal of this application is to ease the tedious task of taking attendance which surprisingly hectic, especially on a large scale.
 
-This project is a starting point for a Flutter application.
+## Installation
 
-A few resources to get you started if this is your first Flutter project:
+To install this application, which is **not** available on *Play Store* or *App Store*, please create a pull request onto writing your name in the editors section below.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+**NOTE** : The application is only given to developers at this stage, as it is mainly a project, and help will definitely appreciated.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Editors :
+
+- @Jaideep-C
+- @bharxhav
