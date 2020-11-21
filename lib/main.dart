@@ -1,38 +1,27 @@
 import 'package:flutter/material.dart';
-
-import 'global/services/shared_pref.dart';
+import 'package:provider/provider.dart';
+import 'global/models/token.dart';
 
 void main() {
-  runApp(IsAuth());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Token(),
+      child: IsAuth(),
+    ),
+  );
 }
 
-class IsAuth extends StatefulWidget {
-  @override
-  _IsAuthState createState() => _IsAuthState();
-}
-
-class _IsAuthState extends State<IsAuth> {
-  String _id;
-
-  @override
-  void initState() {
-    Pref.getId(name: '_id').then((value) {
-      setState(() {
-        _id = value ?? '';
-      });
-    });
-    super.initState();
-  }
-
+class IsAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(_id);
-    return (_id == '')
-        ? Container(
-            color: Colors.cyan,
-          )
-        : Container(
-            color: Colors.yellow,
-          );
+    Token token = context.watch<Token>();
+
+    // return (token.id=='' || token.id == null)? LoginPage():HomePage();
+
+    return Container(
+      child: Center(
+        child: Text(token.id),
+      ),
+    );
   }
 }
