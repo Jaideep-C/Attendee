@@ -6,11 +6,11 @@ class Token extends ChangeNotifier {
   String get id => _id;
 
   Token() {
-    Pref.getId(name: '_id').then((value) => this._id = '');
+    this._id = Pref.getId(name: '_id').toString();
   }
 
   void updateId() {
-    Pref.getId(name: '_id').then((value) => this._id = '');
+    Pref.getId(name: '_id').then((value) => this._id = value ?? '');
     notifyListeners();
   }
 }
