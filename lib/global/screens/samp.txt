@@ -1,0 +1,3 @@
+SignIn => User, Host
+SignUp => User
+ChooseScreen => SignIn or SignUp
