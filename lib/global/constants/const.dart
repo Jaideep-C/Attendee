@@ -1,5 +1,5 @@
 class Api {
-  static String api = 'https://085ffbe6037a.ngrok.io' + '/api';
+  static String api = 'https://d1143034508c.ngrok.io' + '/api';
 
   static String userSignIn = api + '/user/SignIn';
   static String userSignUp = api + '/user/SignUp';
