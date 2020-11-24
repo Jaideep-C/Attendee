@@ -14,6 +14,7 @@ class LoginInputFields extends StatefulWidget {
 class _LoginInputFieldsState extends State<LoginInputFields> {
   Map<String, String> data = Map();
   String err = '';
+  bool _loading = false;
   @override
   Widget build(BuildContext context) {
     Widget inpField({String param}) {
@@ -33,12 +34,16 @@ class _LoginInputFieldsState extends State<LoginInputFields> {
     void onSubmit() {
       print(data);
       try {
+        setState(() {
+          _loading = true;
+        });
         Authenticate.callApi(
           body: data,
           endPoint: Api.userSignIn,
         ).then(
           (value) {
             setState(() {
+              _loading = false;
               err = value;
             });
             context.read<Token>().updateId();
@@ -68,10 +73,12 @@ class _LoginInputFieldsState extends State<LoginInputFields> {
             builder: (_, token, child) {
               return child;
             },
-            child: FloatingActionButton(
-              onPressed: onSubmit,
-              child: Text("Submit"),
-            ),
+            child: (_loading)
+                ? Center(child: CircularProgressIndicator())
+                : FloatingActionButton(
+                    onPressed: onSubmit,
+                    child: Text("Submit"),
+                  ),
           )
         ],
       ),
