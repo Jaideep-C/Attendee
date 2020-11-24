@@ -23,8 +23,13 @@ class IsAuth extends StatefulWidget {
 class _IsAuthState extends State<IsAuth> {
   @override
   Widget build(BuildContext context) {
+    // context.read<Token>().updateId();
+
     Token token = context.watch<Token>();
-    print(token.id);
-    return (token.id == '' || token.id == null) ? LoginPage() : HomePage();
+    token.updateId();
+    print("Token" + token.id.toString());
+    return (token.id == '' || token.id == null)
+        ? LoginPage()
+        : HomePage(token.id);
   }
 }

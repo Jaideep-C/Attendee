@@ -1,7 +1,15 @@
 import 'package:attandee/global/widgets/sign_out.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  String _txt;
+  HomePage(this._txt);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +23,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'HomePage',
+                'HomePage Id ${widget._txt}',
               ),
               SizedBox(
                 height: 10,

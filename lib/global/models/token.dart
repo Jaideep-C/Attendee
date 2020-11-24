@@ -6,11 +6,11 @@ class Token extends ChangeNotifier {
   String get id => _id;
 
   Token() {
-    this._id = Pref.getId(name: '_id').toString();
+    this._id = '';
   }
 
-  void updateId() {
-    Pref.getId(name: '_id').then((value) => this._id = value ?? '');
+  Future<void> updateId() async {
+    this._id = await Pref.getId(name: '_id');
     notifyListeners();
   }
 }
