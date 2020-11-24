@@ -1,6 +1,7 @@
 import 'package:attandee/global/widgets/sign_out.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   String _txt;
   HomePage(this._txt);
