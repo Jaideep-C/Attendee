@@ -137,17 +137,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        RaisedButton(
-                          child: Text('SUBMIT'),
-                          onPressed: () {
-                            // Push to MainScreen of User HERE
-                          },
-                          color: Colors.amber[800],
-                          textColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                        ),
                         Visibility(
                           visible: (err != ''),
                           child: Text(
@@ -163,11 +152,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: (_loading)
                               ? Center(child: CircularProgressIndicator())
-                              : FloatingActionButton(
+                              : RaisedButton(
+                                  child: Text('SUBMIT'),
                                   onPressed: onSubmit,
-                                  child: Text("Submit"),
+                                  color: Colors.amber[800],
+                                  textColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
                                 ),
-                        )
+                        ),
                       ],
                     ),
                   ),
