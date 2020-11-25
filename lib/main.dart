@@ -1,8 +1,9 @@
-import 'package:attandee/global/screens/home_page.dart';
 import 'package:attandee/global/screens/user_login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'global/models/token.dart';
+import 'global/screens/home_page.dart';
+import 'global/widgets/decideUser.dart';
 
 void main() {
   runApp(
@@ -24,10 +25,11 @@ class _IsAuthState extends State<IsAuth> {
   @override
   Widget build(BuildContext context) {
     Token token = context.watch<Token>();
-    token.updateId();
-    print("Token" + token.id.toString());
+    // token.updateId();
+    print("Token=" + token.id.toString());
     return (token.id == '' || token.id == null)
         ? LoginScreen()
-        : HomePage(token.id);
+        // : HomePage(token.id);
+        : Decide();
   }
 }
