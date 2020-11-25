@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:attandee/global/constants/const.dart';
 import 'package:attandee/global/models/token.dart';
+import 'package:attandee/global/screens/signup_page.dart';
 import 'package:attandee/global/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> data = Map();
   String err = '';
-  bool _loading = false;
+  bool _loading = false, _isHost = false;
   @override
   Widget build(BuildContext context) {
     void onSubmit() {
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
         Authenticate.callApi(
           body: data,
-          endPoint: Api.userSignIn,
+          endPoint: (_isHost) ? Api.hostSignIn : Api.userSignIn,
         ).then(
           (value) {
             setState(() {
@@ -41,9 +42,26 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
 
+    Widget _isHostCheckBox() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Login as Host?"),
+          Checkbox(
+            onChanged: (bool value) {
+              setState(() {
+                _isHost = value;
+              });
+            },
+            value: _isHost,
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text(((_isHost) ? 'Host' : 'User') + ' Login'),
         actions: [
           FlatButton(
             child: Row(
@@ -57,6 +75,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             onPressed: () {
               // Push to sign up screen HERE
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignUpScreen()),
+              );
             },
           ),
         ],
@@ -88,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Container(
-                height: 260,
+                // height: 260,
                 width: 300,
                 padding: EdgeInsets.all(16),
                 child: Form(
@@ -135,8 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 3,
                         ),
+                        _isHostCheckBox(),
                         Visibility(
                           visible: (err != ''),
                           child: Text(

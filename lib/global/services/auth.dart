@@ -34,4 +34,31 @@ class Authenticate {
       return e.toString();
     }
   }
+
+  static Future<bool> isHost() async {
+    String _id = await Pref.getId(name: '_id');
+    var _reqBody = {"_id": (_id ?? '')};
+
+    var hostRes = await http.post(
+      Api.getHost,
+      body: json.encode(_reqBody),
+      headers: Api.header,
+    );
+    Map<String, dynamic> hostResBody = json.decode(hostRes.body);
+    print("HOST== " + hostResBody.toString());
+    if (hostResBody['err'] == null || hostResBody['isHost'] == true) {
+      return true;
+    }
+    var userRes = await http.post(
+      Api.getUser,
+      body: json.encode(_reqBody),
+      headers: Api.header,
+    );
+    Map<String, dynamic> userResBody = json.decode(userRes.body);
+    print("USER== " + userResBody.toString());
+    if (userResBody['err'] == null || userResBody['isAdmin'] == false) {
+      return false;
+    }
+    return false;
+  }
 }

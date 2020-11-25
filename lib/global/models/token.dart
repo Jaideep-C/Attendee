@@ -7,6 +7,7 @@ class Token extends ChangeNotifier {
 
   Token() {
     this._id = '';
+    this.updateId();
   }
 
   Future<void> updateId() async {
