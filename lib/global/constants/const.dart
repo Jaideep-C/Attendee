@@ -1,5 +1,5 @@
 class Api {
-  static String api = 'https://f67e3cbdb052.ngrok.io' + '/api';
+  static String api = 'https://b441765b4cdd.ngrok.io' + '/api';
 
   static String userSignIn = api + '/user/SignIn';
   static String userSignUp = api + '/user/SignUp';
@@ -11,4 +11,8 @@ class Api {
   static var header = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   };
+
+  // Sessions
+  static String getAllSessions = api + '/session/getAll';
+  static String createSession = api + '/session/createSession';
 }

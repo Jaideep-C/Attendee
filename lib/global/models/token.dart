@@ -1,5 +1,6 @@
-import 'package:attandee/global/services/shared_pref.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../services/shared_pref.dart';
 
 class Token extends ChangeNotifier {
   String _id;

@@ -1,7 +1,8 @@
-import 'package:attandee/global/models/token.dart';
 import 'package:flutter/material.dart';
-import 'package:attandee/global/services/shared_pref.dart';
 import 'package:provider/provider.dart';
+
+import '../models/token.dart';
+import '../services/shared_pref.dart';
 
 class SignOut extends StatefulWidget {
   @override
@@ -12,8 +13,9 @@ class _SignOutState extends State<SignOut> {
   @override
   Widget build(BuildContext context) {
     void _signOut() {
-      Pref.saveId(name: '_id', value: '');
-      context.read<Token>().updateId();
+      Pref.saveId(name: '_id', value: '').then((value) {
+        context.read<Token>().updateId();
+      });
     }
 
     return Container(

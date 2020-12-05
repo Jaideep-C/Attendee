@@ -1,7 +1,9 @@
 import 'dart:ui';
-import 'package:attandee/global/constants/const.dart';
-import 'package:attandee/global/services/auth.dart';
+
 import 'package:flutter/material.dart';
+
+import '../constants/const.dart';
+import '../services/auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = '/signUp';

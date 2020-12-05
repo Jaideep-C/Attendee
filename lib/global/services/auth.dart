@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'package:attandee/global/constants/const.dart';
-import 'package:attandee/global/services/shared_pref.dart';
+
 import 'package:http/http.dart' as http;
+
+import '../constants/const.dart';
+import 'shared_pref.dart';
 
 class Authenticate {
   static Future<String> callApi({

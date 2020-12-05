@@ -1,8 +1,10 @@
-import 'package:attandee/global/screens/user_login_page.dart';
+import 'global/screens/user_login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'global/models/token.dart';
+// ignore: unused_import
 import 'global/screens/home_page.dart';
+// ignore: unused_import
 import 'global/widgets/decideUser.dart';
 
 void main() {

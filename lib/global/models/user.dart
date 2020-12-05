@@ -2,9 +2,11 @@
 //
 //     final user = userFromJson(jsonString);
 
+import 'dart:convert';
+
 import 'package:attandee/global/models/miscellaneous/absent.dart';
 import 'package:meta/meta.dart';
-import 'dart:convert';
+
 import 'miscellaneous/attended.dart';
 
 User userFromJson(String str) => User.fromJson(json.decode(str));
@@ -27,7 +29,7 @@ class User {
   final Attended attended;
   final Absent absent;
   final bool isAdmin;
-  final int attendancePercentage;
+  final double attendancePercentage;
   final String id;
   final String batch;
   final String fullName;
@@ -38,7 +40,7 @@ class User {
         attended: Attended.fromJson(json["attended"]),
         absent: Absent.fromJson(json["absent"]),
         isAdmin: json["isAdmin"],
-        attendancePercentage: json["attendancePercentage"],
+        attendancePercentage: json["attendancePercentage"].toDouble(),
         id: json["_id"],
         batch: json["batch"],
         fullName: json["fullName"],

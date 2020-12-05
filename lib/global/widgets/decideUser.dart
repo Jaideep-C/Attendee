@@ -1,6 +1,8 @@
-import 'package:attandee/global/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:attandee/user/screens/userApp.dart';
+
+import '../../host/screens/host_app.dart';
+import '../../user/screens/userApp.dart';
+import '../services/auth.dart';
 
 class Decide extends StatefulWidget {
   @override
@@ -35,11 +37,14 @@ class _DecideState extends State<Decide> {
       );
     }
     return (_isHost)
-        ? Container(
-            child: Center(
-              child: Text("isHost $_isHost"),
-            ),
-          )
+        // ? Container(
+        //     child: Center(
+        //       child: Text("isHost $_isHost"),
+        //     ),
+        //   )
+        // : UserApp();
+
+        ? HostApp()
         : UserApp();
   }
 }

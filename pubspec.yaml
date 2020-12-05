@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: ^1.0.1
   http: ^0.12.2
   provider: ^4.3.2+2
+  qr_code_scanner: ^0.0.13
   qr_flutter: ^3.2.0
   shared_preferences: ^0.5.12+4
   simple_rsa: ^0.0.5
