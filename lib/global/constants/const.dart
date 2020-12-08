@@ -1,9 +1,10 @@
 class Api {
-  static String api = 'https://b441765b4cdd.ngrok.io' + '/api';
+  static String api = 'https://68129b32279f.ngrok.io' + '/api';
 
   static String userSignIn = api + '/user/SignIn';
   static String userSignUp = api + '/user/SignUp';
   static String getUser = api + '/user/getUser';
+  static String getAllUsers = api + '/user/getAll';
 
   static String hostSignIn = api + '/host/SignIn';
   //

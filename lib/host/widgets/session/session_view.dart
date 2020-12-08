@@ -18,6 +18,7 @@ class _SessionViewState extends State<SessionView> {
   void initState() {
     super.initState();
     this._session = widget.session;
+    print(this._session.attendees);
   }
 
   void onScan(BuildContext context) {
@@ -38,17 +39,48 @@ class _SessionViewState extends State<SessionView> {
       appBar: AppBar(
         title: Text(_session.name),
       ),
-      body: Container(
-        child: ListTile(
-          title: Text(
-            'Description',
-            style: TextStyle(fontSize: 25),
-          ),
-          subtitle: Text(
-            _session.description,
-            // maxLines: 3,
-          ),
-          isThreeLine: true,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Text(
+                  'Description',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  _session.description,
+                  style: TextStyle(fontSize: 20),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 40),
+              ],
+            ),
+            InkWell(
+              child: Container(
+                padding: EdgeInsets.all(25),
+                child: Text(
+                  'Mark as completed',
+                  style: TextStyle(color: Colors.white),
+                ),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.indigo.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.indigoAccent,
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                ),
+              ),
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

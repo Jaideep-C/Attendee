@@ -9,6 +9,9 @@ import 'package:meta/meta.dart';
 
 import 'miscellaneous/attended.dart';
 
+List<User> userListFromJson(String str) =>
+    List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
+
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
@@ -29,30 +32,33 @@ class User {
   final Attended attended;
   final Absent absent;
   final bool isAdmin;
-  final double attendancePercentage;
+  final int attendancePercentage;
   final String id;
   final String batch;
   final String fullName;
   final String uniqueId;
   final String emailId;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        attended: Attended.fromJson(json["attended"]),
-        absent: Absent.fromJson(json["absent"]),
-        isAdmin: json["isAdmin"],
-        attendancePercentage: json["attendancePercentage"].toDouble(),
-        id: json["_id"],
-        batch: json["batch"],
-        fullName: json["fullName"],
-        uniqueId: json["uniqueId"],
-        emailId: json["emailId"],
-      );
+  factory User.fromJson(Map<String, dynamic> json) {
+    print(json["attendancePercentage"]);
+    return User(
+      attended: Attended.fromJson(json["attended"]),
+      absent: Absent.fromJson(json["absent"]),
+      isAdmin: json["isAdmin"],
+      attendancePercentage: json["attendancePercentage"].toInt(),
+      id: json["_id"],
+      batch: json["batch"],
+      fullName: json["fullName"],
+      uniqueId: json["uniqueId"],
+      emailId: json["emailId"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "attended": attended.toJson(),
         "absent": absent.toJson(),
         "isAdmin": isAdmin,
-        "attendancePercentage": attendancePercentage,
+        "attendancePercentage": attendancePercentage + 0.0,
         "_id": id,
         "batch": batch,
         "fullName": fullName,

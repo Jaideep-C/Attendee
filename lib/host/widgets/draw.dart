@@ -1,3 +1,4 @@
+import 'package:attandee/host/screens/user_attendees.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/session_screen.dart';
@@ -21,41 +22,27 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.book),
             title: Text('Session'),
-            onTap: () => {
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => SessionPage(),
                 ),
-              ),
+              );
             },
           ),
           ListTile(
             leading: Icon(Icons.contact_mail_sharp),
             title: Text('User Attendance'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserAttendance(),
+                ),
+              );
+            },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.check),
-          //   title: Text('Attendance'),
-          //   onTap: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => TakeAttendance()),
-          //     );
-          //     // Navigator.of(context).pop();
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.power_settings_new),
-          //   title: Text('Log Out'),
-          //   onTap: () => {Navigator.of(context).pop()},
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.exit_to_app),
-          //   title: Text('Logout'),
-          //   onTap: () => {Navigator.of(context).pop()},
-          // ),
         ],
       ),
     );

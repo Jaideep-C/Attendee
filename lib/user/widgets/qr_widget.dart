@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:timer_builder/timer_builder.dart';
@@ -26,16 +28,34 @@ class _QrWidgetState extends State<QrWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var time = 10;
     Widget _qr() {
       return TimerBuilder.periodic(
         Duration(
-          seconds: 10,
+          seconds: time,
         ),
         builder: (_) {
-          return QrImage(
-            data: _id + '  ' + DateTime.now().toString(),
-            version: QrVersions.auto,
-            size: MediaQuery.of(context).size.width * 0.8,
+          var _t = time + 1;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TimerBuilder.periodic(Duration(seconds: 1), builder: (_) {
+                _t--;
+                return Text(
+                  'Expires in $_t',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              }),
+              QrImage(
+                data: _id + '  ' + DateTime.now().toString(),
+                version: QrVersions.auto,
+                size: MediaQuery.of(context).size.width * 0.8,
+              ),
+            ],
           );
         },
       );

@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
         emailId: 'NaN',
       );
     }
-    print(res.body);
+    // print('HELP' + res.body);
     return userFromJson(res.body);
   }
 
@@ -96,9 +96,19 @@ class _ProfileState extends State<Profile> {
                 _util("Attendance", user.attendancePercentage.toString() + '%'),
           ),
           SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: _util("Attended", user.attended.count.toString()),
+          InkWell(
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => UserSessionScreen(),
+              //   ),
+              // );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: _util("Attended", user.attended.count.toString()),
+            ),
           ),
         ],
       ),
