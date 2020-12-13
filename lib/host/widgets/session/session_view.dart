@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:attandee/host/services/api_calls.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/session.dart';
@@ -14,6 +15,7 @@ class SessionView extends StatefulWidget {
 
 class _SessionViewState extends State<SessionView> {
   Session _session;
+  bool _loading = false;
   @override
   void initState() {
     super.initState();
@@ -59,27 +61,40 @@ class _SessionViewState extends State<SessionView> {
                 SizedBox(height: 40),
               ],
             ),
-            InkWell(
-              child: Container(
-                padding: EdgeInsets.all(25),
-                child: Text(
-                  'Mark as completed',
-                  style: TextStyle(color: Colors.white),
-                ),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.indigo.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+            (_loading)
+                ? CircularProgressIndicator()
+                : InkWell(
+                    onTap: () {
+                      setState(() {
+                        _loading = true;
+                      });
+                      markComplete(_session.id).then((_) {
+                        setState(() {
+                          _loading = false;
+                        });
+                        Navigator.pop(context);
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(25),
+                      child: Text(
+                        'Mark as completed',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.indigo.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                        color: Colors.indigoAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                      ),
                     ),
-                  ],
-                  color: Colors.indigoAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
-                ),
-              ),
-            )
+                  )
           ],
         ),
       ),

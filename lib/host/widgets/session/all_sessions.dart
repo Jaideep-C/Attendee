@@ -36,21 +36,21 @@ class _AllSessionsState extends State<AllSessions> {
                   leading: Icon(Icons.book_sharp),
                   title: Text(name),
                   subtitle: Text(
-                    (completed ?? false) ? "InActive" : "Active",
+                    (completed ?? false) ? "Inactive" : "Active",
                     style: TextStyle(
                       color: (completed ? Colors.red : Colors.green),
                     ),
                   ),
                   onTap: () {
                     // print("Yeah");
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SessionView(
-                          session: _session,
+                    if (!completed) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SessionView(session: _session),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   },
                 );
               },

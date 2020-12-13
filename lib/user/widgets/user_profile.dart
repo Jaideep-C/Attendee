@@ -68,63 +68,100 @@ class _ProfileState extends State<Profile> {
     return userFromJson(res.body);
   }
 
+  // Widget _profileWd(User user) {
+  //   return Container(
+  //     padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+  //     child: Column(
+  //       // mainAxisAlignment: MainAxisAlignment.center,
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: _util("Name", user.fullName),
+  //         ),
+  //         SizedBox(height: 15),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: _util("Unique Id", user.uniqueId),
+  //         ),
+  //         SizedBox(height: 15),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: _util("Email Id", user.emailId),
+  //         ),
+  //         SizedBox(height: 15),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children:
+  //               _util("Attendance", user.attendancePercentage.toString() + '%'),
+  //         ),
+  //         SizedBox(height: 15),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children:
+  //               _util("Attended Sessions", user.attended.count.toString()),
+  //         ),
+  //         SizedBox(height: 15),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: _util("Absent Sessions", user.absent.count.toString()),
+  //         ),
+  //         SizedBox(height: 15),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           children: _util(
+  //             "Total Sessions",
+  //             (user.absent.count + user.attended.count).toString(),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+
+  // List<Widget> _util(String first, String second) {
+  //   return [
+  //     Text(
+  //       first,
+  //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+  //     ),
+  //     Text(
+  //       second,
+  //       style: TextStyle(fontSize: 20),
+  //     ),
+  //   ];
+  // }
   Widget _profileWd(User user) {
+    TableRow _oneRow({String key, String value}) {
+      return TableRow(children: [
+        Text(
+          key,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
+        Text(value, style: TextStyle(fontSize: 25))
+      ]);
+    }
+
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      padding: EdgeInsets.all(20),
+      child: Table(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: _util("Name", user.fullName),
+          _oneRow(key: "Name", value: user.fullName),
+          _oneRow(key: "Unique id", value: user.uniqueId),
+          _oneRow(key: "Email id", value: user.emailId),
+          _oneRow(
+            key: "Attendance",
+            value: user.attendancePercentage.toString() + '%',
           ),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: _util("Unique Id", user.uniqueId),
-          ),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: _util("Email Id", user.emailId),
-          ),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:
-                _util("Attendance", user.attendancePercentage.toString() + '%'),
-          ),
-          SizedBox(height: 15),
-          InkWell(
-            onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => UserSessionScreen(),
-              //   ),
-              // );
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: _util("Attended", user.attended.count.toString()),
-            ),
-          ),
+          _oneRow(
+              key: "Total Sessions",
+              value: (user.absent.count + user.attended.count).toString()),
         ],
+        textDirection: TextDirection.ltr,
       ),
     );
-  }
-
-  List<Widget> _util(String first, String second) {
-    return [
-      Text(
-        first,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-      ),
-      Text(
-        second,
-        style: TextStyle(fontSize: 20),
-      ),
-    ];
   }
 }

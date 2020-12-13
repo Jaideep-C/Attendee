@@ -40,7 +40,12 @@ class _HostAppState extends State<HostApp> {
             ),
           ],
         ),
-        body: Container(),
+        body: Container(
+          child: Center(
+            child: Text('Welcome Host😁\nHave a\nGood D🍪y',
+                style: TextStyle(fontSize: 30), textAlign: TextAlign.center),
+          ),
+        ),
       ),
     );
   }

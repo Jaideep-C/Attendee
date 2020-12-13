@@ -64,3 +64,16 @@ Future<List<User>> allUserList() async {
     return userListFromJson(res.body);
   }
 }
+
+Future<void> markComplete(String _id) async {
+  var res = await http.post(
+    Api.completeSession,
+    body: json.encode({"_id": _id}),
+    headers: Api.header,
+  );
+  var body = json.decode(res.body);
+  if (body.containsKey("err")) {
+    return;
+  }
+  return;
+}
