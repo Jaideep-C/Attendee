@@ -1,6 +1,6 @@
-# Attandee
+# Attendee
 
-Attandee is an app, built with flutter, thus compatible on many platforms.
+Attendee is an app, built with flutter, thus compatible on many platforms.
 
 The main goal of this application is to ease the tedious task of taking attendance which surprisingly hectic, especially on a large scale.
 
@@ -13,4 +13,3 @@ To install this application, which is **not** available on *Play Store* or *App 
 ### Editors :
 
 - @Jaideep-C
-- @bharxhav
